@@ -1,0 +1,523 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# The promt, the order of the modules is important
+# In order to add a new part to the prompt
+# You need to add that color to the palette
+# And then add that color as the background color to the devider
+# And then add the color of the previous part as the foreground color to the new part
+# And then add the new part to the prompt
+# And then add the new color as the new foreground to the next part
+format = """
+[](fg:color_part_one)\
+$os\
+$username\
+[](bg:color_part_two fg:color_part_one)\
+$directory\
+[](bg:color_part_three fg:color_part_two)\
+$git_branch\
+$git_status\
+$git_metrics\
+$git_commit\
+[](bg:color_part_four fg:color_part_three)\
+$c\
+$elixir\
+$elm\
+$golang\
+$gradle\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+$scala\
+$python\
+$aws\
+$buf\
+$cmake\
+$conda\
+$crystal\
+$dart\
+$fennel\
+$fossil_branch\
+$guix_shell\
+$haxe\
+$hg_branch\
+$kotlin\
+$lua\
+$meson\
+$nix_shell\
+$ocaml\
+$package\
+$perl\
+$php\
+$pijul_channel\
+$rlang\
+$ruby\
+$swift\
+$zig\
+[](fg:color_part_four bg:color_part_five)\
+$docker_context\
+[](fg:color_part_five bg:color_part_six)\
+$time\
+[](fg:color_part_six)\
+$line_break\
+$character\
+"""
+
+right_format = """
+[](fg:color_right_part_one)\
+$cmd_duration\
+[  ](bg:color_right_part_two)\
+$memory_usage\
+$hostname\
+$localip\
+[ ](fg:color_right_part_two)\
+"""
+
+palette = 'custom'
+
+[palettes.custom] # add/change the colors of the palette here
+color_fg_dark = '#3c3836'
+color_fg_light = '#cccccc'
+color_readonly = '#ff1117'
+color_part_one = '#9A348E'
+color_part_two = '#DA627D'
+color_part_three = '#FCA17D'
+color_part_four = '#86BBD8'
+color_part_five = '#06969A'
+color_part_six = '#33658A'
+color_char_success = '#9A348E'
+color_char_error = '#cc241d'
+color_char_vimcmd = '#98971a'
+color_right_part_one = '#3c3836' 
+color_right_part_two = '#3c3836'
+
+
+#
+# First part of the prompt color_part_one as background
+#
+[username]
+disabled = false
+show_always = true
+format = '[$user]($style)'
+style_user = "bg:color_part_one fg:color_fg_light"
+style_root = "bg:color_part_one fg:color_fg_light"
+aliases = { "Sande" = "Sander", "Administrator" = "Admin" }
+
+
+#
+# Second part of the prompt color_part_two as background
+#
+[directory]
+disabled = false
+read_only = " "
+read_only_style = "bg:color_part_two fg:color_readonly"
+style = "bg:color_part_two fg:color_fg_dark"
+format = "[$path ]($style)[$read_only]($read_only_style)"
+use_os_path_sep = true # This will show "/" as "\" in the prompt on windows
+truncate_to_repo = true
+truncation_length = 3
+truncation_symbol = " ./" 
+home_symbol = " ~" # defaults to "~"
+repo_root_style = 'bg:color_part_two fg:color_fg_dark'
+repo_root_format = '[ ./$repo_root$path ]($repo_root_style)'
+
+[directory.substitutions] # add/change the icons for the directories that should be subsututed here
+" ~/Documents" = "./󰈙 "
+" ~/Downloads" = "./ "
+" ~/Music" = "./"  
+" ~/Pictures" = "./ "
+" ~/Videos" = "./ "
+" ~/Projects" = "./󱌢 "
+" ~/GitHub" = "./ "
+" ~/.config" = "./ "
+"c:/" = "C:/" # This will replace the lowwercase c:/ with the uppercase C:/ in order to look better
+"p:/" = "P:/"
+"s:/" = "S:/"
+"P:/" = "󰋊 P:/" # This will add an drive icon to the front of these drive-letters
+"S:/" = "󰋊 S:/"
+"C:/" = "󰋊 C:/"
+# Keep in mind that the order matters.
+
+
+#
+# Third part of the prompt color_part_three as background
+#
+[git_branch]
+disabled = false
+always_show_remote = false
+symbol = " "
+truncation_length = 8
+truncation_symbol = "…"
+only_attached = false
+ignore_branches = []
+style = "bg:color_part_three fg:color_fg_dark" # This is the same as the background color of the part its in, the foreground color is dark to improve readability
+format = '[$symbol$branch ]($style)'
+
+[git_commit]
+disabled = false
+tag_symbol = ' '
+style = "bg:color_part_three fg:color_fg_dark"
+format = '[\($hash\)\($tag_symbol$tag\) ]($style)'
+commit_hash_length = 7
+tag_disabled = false
+
+#
+# Fourth part of the prompt color_part_four as background
+#
+[c]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol$name $version ]($style)'
+
+[elixir]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[elm]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[golang]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[gradle]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[haskell]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[java]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[julia]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[nodejs]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[nim]
+disabled = false
+symbol = "󰆥 "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[rust]
+disabled = false
+symbol = "󱘗 "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[scala]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[python]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[${symbol}${pyenv_prefix}${version}( \(${virtualenv}\)) ]($style)'
+python_binary = ["python3", "python"]
+
+[aws]
+disabled = false
+symbol = "  "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($profile )(\($region\) )(\[$duration\] ) ]($style)'
+
+[buf]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[cmake]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[conda]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol$environment ]($style)'
+
+[crystal]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[dart]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[fennel]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[fossil_branch]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol$branch ]($style)'
+
+[guix_shell]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol ]($style)'
+
+[haxe]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[hg_branch]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol$branch(:$topic) ]($style)'
+
+[kotlin]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[lua]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[meson]
+disabled = false
+symbol = "󰔷 "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol$project ]($style)'
+
+[nix_shell]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol$state(\($name\)) ]($style)'
+
+[ocaml]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version)(\($switch_indicator$switch_name\)) ]($style)'
+
+[package]
+disabled = false
+symbol = "󰏗 "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[\($symbol$version\) ]($style)'
+
+[perl]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[php]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[pijul_channel]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol$channel ]($style)'
+
+[rlang]
+disabled = false
+symbol = "󰟔 "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[ruby]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[swift]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+[zig]
+disabled = false
+symbol = " "
+style = "bg:color_part_four fg:color_fg_dark"
+format = '[$symbol($version) ]($style)'
+
+#
+# Fifth part of the prompt color_part_five as background
+#
+[docker_context]
+disabled = false
+symbol = " "
+style = "bg:color_part_five fg:color_fg_dark"
+format = '[via $symbol$context ]($style)'
+
+#
+# Sixth part of the prompt color_part_six as background
+#
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:color_part_six fg:color_fg_light"
+format = '[ ♥ $time ]($style)' 
+
+#
+# Seventh part of the prompt color_part_one as foreground
+# This is on a new line
+#
+[character]
+disabled = false
+format = "[ $symbol ]()"
+success_symbol = '[](bold fg:color_char_success)'
+error_symbol = '[](bold fg:color_char_error)'
+vimcmd_symbol = '[](bold fg:color_char_vimcmd)'
+
+#
+# Right bottom side prompt
+# I was unable to move it to the top right corner seen that i have the terminal input on a new line
+#
+[cmd_duration]
+min_time = 0
+show_milliseconds = true
+format = '[ $duration]($style)'
+style = "bg:color_right_part_one fg:color_fg_light"
+
+[localip]
+ssh_only = false
+style = "bg:color_right_part_two fg:color_fg_light"
+format = '[$localipv4]($style)'
+disabled = false
+
+#
+# Unused modules
+#
+[os] # This is in the first part of the prompt
+disabled = true
+
+[git_status] # This is in the third part of the prompt
+disabled = true
+style = "bg:color_part_three fg:color_fg_dark"
+format = '[ $all_status$ahead_behind]($style)'
+
+[git_metrics] # This is in the third part of the prompt
+disabled = true
+added_style = "bg:color_part_three fg:color_fg_dark"
+format = '[+$added/-$deleted]($added_style)'
+
+[hostname] # This is in the right prompt
+disabled = true
+ssh_only = false
+ssh_symbol = " "
+style = "bg:color_right fg:color_fg_light"
+format = '[$hostname@]($style)'
+trim_at = ""
+aliases = { "S_VIVOBOOK" = "vivobook" }
+
+[memory_usage] # This is in the right prompt
+disabled = true
+symbol = "󰍛 "
+format = "[$symbol${ram}( | ${swap}) | ]($style)"
+style = "bg:color_right fg:color_fg_light"
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+OpenCloudOS = "☁️ "
+# Find more icons at https://www.nerdfonts.com/cheat-sheet
+# The next ones are the default ones
+AIX = "➿ "
+openEuler = "🦉 "
+Ultramarine = "🔷 "
+Uos = "🐲 "
