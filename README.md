@@ -21,7 +21,7 @@ This is my personal Starship configuration file, feel free to copy and modify it
     - Find the setting for `Terminal > Integrated: Font Family`
     - Add the Nerd Font here one of the first (if its not the first, only the icons will be visable)
 
-### installation
+### Installation
 
 - Clone this repo and add `starship.toml` to your config file located at: `~/.config/starship/`. You can either copy the contents or replace the file
 - Restart your terminal if it does not load.
