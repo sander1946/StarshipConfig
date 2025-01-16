@@ -428,7 +428,7 @@ vimcmd_symbol = '[](bold fg:color_char_vimcmd)'
 [cmd_duration]
 min_time = 0
 show_milliseconds = true
-format = '[ $duration]($style)'
+format = '[󰔟 $duration]($style)' #  If you only use the Monocraft Nerd Patched font this one will not work, use this one: 
 style = "bg:color_right_part_one fg:color_fg_light"
 
 [localip]
